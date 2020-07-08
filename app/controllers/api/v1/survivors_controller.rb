@@ -37,7 +37,7 @@ module Api
                     render json: {
                         status: 'ERROR',
                         message: 'Survivor not saved',
-                        data: survivor.erros
+                        data: survivor.errors
                     }, status: :unprocessable_entity
                 end
             end
@@ -54,7 +54,7 @@ module Api
                 }, status: :ok
             end
 
-            # Update some fields of he survivors
+            # Update some fields of he survivors like location and satus of infection
             def update
                 survivor = Survivor.find(params[:id])
 
@@ -68,7 +68,7 @@ module Api
                     render json: {
                         status: 'ERROR',
                         message: 'Survivor not saved',
-                        data: survivor.erros
+                        data: survivor.errors
                     }, status: :unprocessable_entity
                 end
             end
