@@ -2,12 +2,12 @@ module Api
     module V1
         class SurvivorsController < ApplicationController
             
-            # List all srvivors
+            # List all survivors
             def index
                 # survivors = Survivor.order('created_at DESC').where("id = 21");
                 survivors = Survivor.order('created_at DESC');
                 render json: {
-                    status: 'SUCCESS',
+                    banana: 'SUCCESS',
                     message: 'Loaded Survivors',
                     data: survivors
                 }, status: :ok
