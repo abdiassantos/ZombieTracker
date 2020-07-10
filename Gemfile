@@ -30,11 +30,13 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Rspec for test
   gem 'rails-controller-testing'
+  gem 'database_cleaner'
+  gem "factory_bot_rails"
+  gem 'faker'
   gem 'rspec-rails', '~> 4.0.1'
 end
 
 group :development do
-  gem 'faker'
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
