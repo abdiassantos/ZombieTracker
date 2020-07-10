@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
   namespace 'api' do
-      namespace 'v1' do
-        resources :survivors
-        resources :complaints
-        resources :inventories
-        resources :reports
-        resources :trades
-      end
+    resources :survivors
+    resources :complaints, only: [:index, :show, :create, ]
+    resources :inventories, only: [:index, :show, :create]
+    resources :reports, only: [:index]
+    resources :trades, only: [:create]
   end
 end
+  
