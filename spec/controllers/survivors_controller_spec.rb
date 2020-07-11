@@ -102,6 +102,20 @@ RSpec.describe Api::SurvivorsController, type: :controller do
         end
     end
 
-    describe
+    describe "DELETE#destroy" do
+        let!(:survivor) { create(:survivor) }
+    
+        it "deletes a survivor" do
+            expect {
+                delete :destroy, params: { id: survivor.id }
+            }.to change {
+                Survivor.count
+            }.by(-1)
+        end
 
+        it "returns a successful response" do
+            delete :destroy, params: { id: survivor.id }
+            expect(response).to be_successful
+        end
+    end
 end
