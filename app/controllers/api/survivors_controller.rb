@@ -1,5 +1,7 @@
 module Api
     class SurvivorsController < ApplicationController
+
+        before_action :set_survivor, only: [:show, :update, :destroy]
             
         # List all survivors
         def index
@@ -14,11 +16,10 @@ module Api
 
         # List survivor by id
         def show
-            survivor = Survivor.find(params[:id])
             render json: {
                 status: 'SUCCESS',
                 message: 'Loaded Survivor',
-                data: survivor
+                data: @survivor
             }, status: :ok
         end
 
@@ -43,31 +44,28 @@ module Api
 
         # Delete a survivor
         def destroy
-            survivor = Survivor.find(params[:id])
             survivor.destroy
 
             render json: {
                 status: 'SUCCESS',
                 message: 'Deleted survivor',
-                data: survivor
+                data: @survivor
             }, status: :ok
         end
 
         # Update some fields of he survivors like location and satus of infection
         def update
-            survivor = Survivor.find(params[:id])
-
             if survivor.update_attributes(survivor_update_params)
                 render json: {
                     status: 'SUCCESS',
                     message: 'Updated Suvivor',
-                    data: survivor
+                    data: @survivor
                 }, status: :ok
             else
                 render json: {
                     status: 'ERROR',
                     message: 'Survivor not saved',
-                    data: survivor.errors
+                    data: @survivor.errors
                 }, status: :unprocessable_entity
             end
         end
@@ -82,6 +80,10 @@ module Api
         # Update Location Params
         def survivor_update_params
             params.permit(:latitude, :longitude, :infected)
+        end
+
+        def set_survivor
+            @survivor = Survivor.find(params[:id])
         end
     end
 end
